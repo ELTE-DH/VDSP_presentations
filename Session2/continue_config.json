@@ -1,0 +1,37 @@
+{
+  "models": [
+    {
+      "model": "gpt-4o",
+      "contextLength": 128000,
+      "title": "GPT-4o",
+      "systemMessage": "You are an expert software developer. You give helpful and concise responses.",
+      "provider": "openai",
+      "apiKey": "YOUR CODE HERE"
+    }
+  ],
+  "customCommands": [
+    {
+      "name": "test",
+      "prompt": "{{{ input }}}\n\nWrite a comprehensive set of unit tests for the selected code. It should setup, run tests that check for correctness including important edge cases, and teardown. Ensure that the tests are complete and sophisticated. Give the tests just as chat output, don't edit any file.",
+      "description": "Write unit tests for highlighted code"
+    },
+    {
+      "name": "latexdoc",
+      "prompt": "{{{ input }}}\n\nWrite a latex documentation for the selected code. It should include a short natural language description and a set of latex equations that represent the operations performed by the code. The documentation should be complete and sophisticated. Give the documentation only as chat output, don't edit any file.",
+      "description": "Create LaTeX-based documentation"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Starcoder_model",
+    "provider": "huggingface-tgi",
+    "model": "starcoder2-3b",
+    "apiBase": "http://mobydick.elte-dh.hu:12421/"
+  },
+  "allowAnonymousTelemetry": true,
+  "embeddingsProvider": {
+    "provider": "free-trial"
+  },
+  "reranker": {
+    "name": "free-trial"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "llm.api_base": "https://api.openai.com/v1",
+  "llm.api_key": "YOUR KEY HERE",
+  "llm.model": "gpt-4o",
+  "execution_service.kernel_mode": "local"
+}

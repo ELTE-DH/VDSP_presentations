@@ -1,0 +1,47 @@
+name: fdtd_sim
+enabled: true
+required: false
+description: >-
+  fdtd_sim function runs a 2D Electromagnetic Finite-Difference Time-Domain (FDTD) simulation on the provided grid. It returns the detected E field, H field and the grid images as 3 separate PIL images.
+examples:
+  'imge, imgh, imgg = fdtd_sim(100, 100, detector={"name": "detector", "type": "line", "xrange": (25, 75), "yrange": (None, None)}, objects=[{"permittivity": 4, "name": "object", "xrange": (40, 60), "yrange": (40, 60)}], sources=[{"name": "source", "type": "line", "xrange": (25, 85), "yrange": (None, None), "period": 1e-15, "amplitude": 1}], pml_width=10, total_time=1e-14)'
+parameters:
+  - name: gridx
+    type: int
+    required: true
+    description: the x dimension of the grid in um.
+  - name: gridy
+    type: int
+    required: true
+    description: the y dimension of the grid in um.
+  - name: detector
+    type: dict
+    required: true
+    description: "a detector object with {name: str, variable: {e:bool, h:bool} type: str(line, current, block), xrange: tuple, yrange: tuple} if a tuple element is None it will be a line detector, if both tupple elements are None a full grid segment is used. Ranges are in meters."
+  - name: objects
+    type: list
+    required: true
+    description: "a list of physical objects with {permittivity: float, name: str, xrange: tuple, yrange: tuple}. Ranges are in meters."
+  - name: sources
+    type: list
+    required: true
+    description: "a list of sources with {name: str, type:str(line, point), xrange: tuple, yrange: tuple, period: float, amplitude: float}. Ranges are in meters."
+  - name: pml_width
+    type: int
+    required: true
+    description: the width of the perfectly matched layer boundary in um from the edges of the grid.
+  - name: total_time
+    type: float
+    required: true
+    description: the total time of the simulation in seconds.
+returns:
+  - name: imge
+    type: PIL Image
+    description: >-
+      This is an image of the detected E field.
+  - name: imgh
+    type: PIL Image
+    description: This is an image of the detected H field.
+  - name: imgg
+    type: PIL Image
+    description: This is an image of the grid.
